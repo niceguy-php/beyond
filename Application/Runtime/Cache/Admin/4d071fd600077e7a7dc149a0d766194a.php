@@ -581,7 +581,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
+			<div class="page-toolbar hide">
 				<!-- BEGIN THEME PANEL -->
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">

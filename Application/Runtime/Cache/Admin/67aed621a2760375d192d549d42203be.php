@@ -575,7 +575,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
+			<div class="page-toolbar hide">
 				<!-- BEGIN THEME PANEL -->
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -989,7 +989,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<td><?php echo ($vo["electricShockCount"]); ?></td>
 								<td><?php echo ($vo["bugCount"]); ?></td>
 								<td>
-									<a href="/index.php/Admin/device/report/sn/<?php echo ($vo["SetSn"]); ?>">[报表]</a>
+									<a href="/index.php/Admin/device/report/sn/<?php echo ($vo["SetSn"]); ?>/name/<?php echo ($vo["deviceName"]); ?>">[报表]</a>
 									<a href="/index.php/Admin/device/historyData/sn/<?php echo ($vo["SetSn"]); ?>">[历史数据]</a>
 									<a style="display:none;" href="warn_info.html">报警信息</a>
 									<a href="/index.php/Admin/device/compareAnalysis/sn/<?php echo ($vo["SetSn"]); ?>">[对比分析]</a>

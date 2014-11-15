@@ -578,7 +578,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="container">
 			<!-- BEGIN PAGE TITLE -->
 			<div class="page-title">
-				<h1>统计报表 <small>XXX名称设备的所有统计信息</small></h1>
+				<h1>统计报表 <small><?php echo ($deviceInfo["name"]); ?>（<?php echo ($deviceInfo["sn"]); ?>）的统计信息</small></h1>
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
@@ -801,7 +801,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-bar-chart-o font-green-sharp"></i>
 								<span class="caption-subject font-green-sharp bold uppercase">诱杀害虫数量实时信息统计图</span>
 							</div>
-							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
+							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group hide">
 								<button class="btn btn-sm default" type="button">选择指标</button>
 								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
 								<div role="menu" class="dropdown-menu hold-on-click dropdown-checkboxes">
@@ -809,6 +809,16 @@ License: You must have a valid license purchased only from themeforest(the above
 									<label><div class="checker"><span class="checked"><input type="checkbox" checked=""></span></div>杀死害虫数</label>
 								</div>
 							</div>
+							
+							<div class="btn-group col-xs-offset-1">
+								<button type="button" class="btn default">选择指标</button>
+								<button type="button" class="btn default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+								<div class="dropdown-menu hold-on-click dropdown-checkboxes" role="menu">
+									<label><input type="checkbox">放电次数</label>
+									<label><input type="checkbox" checked>杀虫数量</label>
+								</div>
+							</div>
+							
 							<div class="tools">
 								<a href="javascript:;" class="collapse">
 								</a>
@@ -873,15 +883,17 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-bar-chart-o font-green-sharp"></i>
 								<span class="caption-subject font-green-sharp bold uppercase">诱杀害虫按小时统计图</span>
 							</div>
-							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
-								<button class="btn btn-sm default" type="button">选择指标</button>
-								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
-								<div role="menu" class="dropdown-menu hold-on-click dropdown-checkboxes">
-									<label><div class="checker"><span><input type="checkbox"></span></div>放电次数</label>
-									<label><div class="checker"><span class="checked"><input type="checkbox" checked=""></span></div>杀死害虫数</label>
+							
+							<div class="btn-group col-xs-offset-1 pull-left">
+								<button type="button" class="btn default">选择指标</button>
+								<button type="button" class="btn default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+								<div class="dropdown-menu hold-on-click dropdown-checkboxes" role="menu">
+									<label><input type="checkbox">放电次数</label>
+									<label><input type="checkbox" checked>杀虫数量</label>
 								</div>
 							</div>
-							<div class="form-group " style="height:30px ;float:left; margin-left:50px;margin-top:8px;" >
+							
+							<div class="form-group hide" style="height:30px ; margin-left:50px;margin-top:8px;" >
 										<label class="control-label" style='margin-top:5px;margin-right:8px'>时间范围</label>
 										<div class="" style="float:right;">
 											<div id="reportrange" class="btn default">
@@ -891,6 +903,20 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 								</div>
+								
+							
+							<div class="form-group pull-left col-xs-offset-1 " style="margin-bottom:0px;">
+										<label class="control-label col-md-3" style="padding:0;margin-top: 6px;">时间范围</label>
+										<div class="col-md-3" style="padding:0">
+											<div id="reportrange" class="btn default">
+												<i class="fa fa-calendar"></i>
+												&nbsp; <span>
+												</span>
+												<b class="fa fa-angle-down"></b>
+											</div>
+										</div>
+									</div>
+							
 							<div class="tools">
 								
 								<a href="javascript:;" class="collapse" style="float:right;">
@@ -924,14 +950,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-bar-chart-o font-green-sharp"></i>
 								<span class="caption-subject font-green-sharp bold uppercase">2014年每天杀死害虫统计对比图</span>
 							</div>
-							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
-								<button class="btn btn-sm default" type="button">选择指标</button>
-								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
-								<div role="menu" class="dropdown-menu hold-on-click dropdown-checkboxes">
-									<label><div class="checker"><span><input type="checkbox"></span></div>放电次数</label>
-									<label><div class="checker"><span class="checked"><input type="checkbox" checked=""></span></div>杀死害虫数</label>
+							
+							<div class="btn-group col-xs-offset-1">
+								<button type="button" class="btn default">选择指标</button>
+								<button type="button" class="btn default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+								<div class="dropdown-menu hold-on-click dropdown-checkboxes" role="menu">
+									<label><input type="checkbox">放电次数</label>
+									<label><input type="checkbox" checked>杀虫数量</label>
 								</div>
 							</div>
+							
 							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
 								<button class="btn btn-sm default" type="button">选择月份</button>
 								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
@@ -983,14 +1011,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-bar-chart-o font-green-sharp"></i>
 								<span class="caption-subject font-green-sharp bold uppercase">年杀死害虫统计对比</span>
 							</div>
-							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
-								<button class="btn btn-sm default" type="button">选择指标</button>
-								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
-								<div role="menu" class="dropdown-menu hold-on-click dropdown-checkboxes">
-									<label><div class="checker"><span><input type="checkbox"></span></div>放电次数</label>
-									<label><div class="checker"><span class="checked"><input type="checkbox" checked=""></span></div>杀死害虫数</label>
+							
+							<div class="btn-group col-xs-offset-1">
+								<button type="button" class="btn default">选择指标</button>
+								<button type="button" class="btn default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+								<div class="dropdown-menu hold-on-click dropdown-checkboxes" role="menu">
+									<label><input type="checkbox">放电次数</label>
+									<label><input type="checkbox" checked>杀虫数量</label>
 								</div>
 							</div>
+							
 							<div class="tools">
 								<a href="javascript:;" class="collapse">
 								</a>
@@ -1025,12 +1055,12 @@ License: You must have a valid license purchased only from themeforest(the above
 								<i class="fa fa-bar-chart-o font-green-sharp"></i>
 								<span class="caption-subject font-green-sharp bold uppercase">农作物的害虫数量和农药使用量统计</span>
 							</div>
-							<div style="margin-left:8px;margin-top:8px;float:left;" class="btn-group">
-								<button class="btn btn-sm default" type="button">选择指标</button>
-								<button data-toggle="dropdown" class="btn btn-sm default dropdown-toggle" type="button"><i class="fa fa-angle-down"></i></button>
-								<div role="menu" class="dropdown-menu hold-on-click dropdown-checkboxes">
-									<label><div class="checker"><span><input type="checkbox"></span></div>放电次数</label>
-									<label><div class="checker"><span class="checked"><input type="checkbox" checked=""></span></div>杀死害虫数</label>
+							<div class="btn-group col-xs-offset-1">
+								<button type="button" class="btn default">选择指标</button>
+								<button type="button" class="btn default dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-down"></i></button>
+								<div class="dropdown-menu hold-on-click dropdown-checkboxes" role="menu">
+									<label><input type="checkbox">放电次数</label>
+									<label><input type="checkbox" checked>杀虫数量</label>
 								</div>
 							</div>
 							<div class="form-group " style="height:30px ;float:left; margin-top:8px;margin-left:20px" >

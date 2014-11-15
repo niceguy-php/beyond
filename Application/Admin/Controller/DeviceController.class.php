@@ -130,6 +130,8 @@ class DeviceController extends BController {
      }
      
      public function report(){
+     	
+     	$this->assign('deviceInfo',$_GET);
      	$this->display();
      }
      
