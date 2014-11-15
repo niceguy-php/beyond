@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 3.2.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>设备管理</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="__PUBLIC__/Style/assets/global/fonts/2.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Style/assets/global/plugins/select2/select2.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Style/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.css"/>
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="__PUBLIC__/Style/assets/global/css/components.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/css/plugins.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/layout.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/custom.css" rel="stylesheet" type="text/css">
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-menu-fixed" class to set the mega menu fixed  -->
+<!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
+<body>
+<!-- BEGIN HEADER -->
+<div class="page-header">
+	<!-- BEGIN HEADER TOP -->
+	<include file="./Application/Admin/View/Public/tpl/header.html" />
+	<!-- END HEADER TOP -->
+	
+	<!-- BEGIN HEADER MENU -->
+	<include file="./Application/Admin/View/Public/tpl/nav.html" />
+	<!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN PAGE HEAD -->
+	<div class="page-head">
+		<div class="container">
+			<!-- BEGIN PAGE TITLE -->
+			<div class="page-title">
+				<h1>设备 <small>杀虫灯列表</small></h1>
+			</div>
+			<!-- END PAGE TITLE -->
+			<!-- BEGIN PAGE TOOLBAR -->
+			<include file="./Application/Admin/View/Public/tpl/settings.html" />
+			<!-- END PAGE TOOLBAR -->
+		</div>
+	</div>
+	<!-- END PAGE HEAD -->
+	<!-- BEGIN PAGE CONTENT -->
+	<div class="page-content">
+		<div class="container">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="createLamp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title bold green">新建设备</h4>
+						</div>
+						<div class="modal-body">
+							 <form class="form-horizontal" role="form">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">设备名称</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="deviceName_add" name="deviceName" placeholder="名称">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">设备编码(SN码)</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="SetSn_add" name="SetSn" placeholder="设备编码(SN码)">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">用途</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="comment_add" name="comment" placeholder="用途">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">位置</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" name="Location" id="Location_add" placeholder="位置">
+										</div>
+									</div>
+									<if condition="$Think.session.user.roles eq 'admin' ">
+										<div class="form-group">
+											<label class="col-md-3 control-label">所属用户</label>
+											<div class="col-md-6">
+												<select id="UserId_add" name="UserId" class="form-control select2me">
+													<option value="{$admin.ID}">比昂科技内部设备</option>
+													<volist id="vo" name="users">
+														<option value="{$vo.ID}">{$vo.realname}({$vo.userName})</option>
+													</volist>
+												</select>
+											</div>
+										</div>
+									<else />
+									 <input type="hidden" id="UserId_add" name="UserId" value="{$Think.session.user.ID}">
+									</if>
+									
+								</div>
+								
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="saveBtn" class="btn green">保存</button>
+							<button type="button" id="saveCloseBtn" class="btn default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			
+			
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="editLamp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title bold green">编辑设备</h4>
+						</div>
+						<div class="modal-body">
+							 <form class="form-horizontal" role="form">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">设备名称</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="deviceName_edit" name="deviceName" placeholder="名称">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">设备编码(SN码)</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="SetSn_edit" name="SetSn" placeholder="设备编码(SN码)">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">用途</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="comment_edit" name="comment" placeholder="用途">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">位置</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" name="Location" id="Location_edit" placeholder="位置">
+										</div>
+									</div>
+									<if condition="$Think.session.user.roles eq 'admin' ">
+										<div class="form-group">
+											<label class="col-md-3 control-label">所属用户</label>
+											<div class="col-md-6">
+												<select id="UserId_edit" name="UserId" class="form-control select2me">
+													<option value="{$admin.ID}">比昂科技内部设备</option>
+													
+													<volist id="vo" name="users">
+														<option value="{$vo.ID}">{$vo.realname}({$vo.userName})</option>
+													</volist>
+												</select>
+											</div>
+										</div>
+									<else />
+									 <input type="hidden" id="UserId_edit" name="UserId" value="{$Think.session.user.ID}">
+									</if>
+									
+								</div>
+								
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="updateBtn" class="btn green">保存</button>
+							<button type="button" id="updateCloseBtn" class="btn default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			
+			
+			<!-- BEGIN PAGE CONTENT INNER -->
+			
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<!-- BEGIN EXAMPLE TABLE PORTLET-->
+					<div class="portlet light">
+						<div class="portlet-title">
+							<div class="caption">
+								<i class="fa fa-list font-green-sharp"></i>
+								<span class="caption-subject font-green-sharp bold uppercase">杀虫灯列表</span>
+							</div>
+							
+							<div class="tools">
+								<a href="javascript:;" class="collapse">
+								</a>
+								<a href="javascript:;" class="reload">
+								</a>
+							</div>
+							
+							<div class="actions btn-set">
+								<button onclick="$('#createLamp').modal('show');" class="btn green-haze btn-circle"><i class="fa fa-plus"></i> 添加</button>
+								<button id="editDevice" class="btn btn-circle btn-primary"><i class="fa fa-edit"></i> 编辑</button>
+								<button id="deleteDevice" class="btn btn-circle btn-danger"><i class="fa fa-bank"></i> 删除</button>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-striped table-bordered table-hover" id="sample_2">
+							<thead>
+							<tr>
+								<th class="table-checkbox">
+									<input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/>
+								</th>
+								<th>编码</th>
+								<th>名称</th>
+								<th>用途</th>
+								<th>所在位置</th>
+								<th>拥有者</th>
+								<th>设备状态</th>
+								<th>灯状态</th>
+								<th style="width:80px;">最近开关时间</th>
+								<th>电量</th>
+								<th>充电状态</th>
+								<th>总放电数</th>
+								<th>总杀虫数</th>
+								<th>详情</th>
+							</tr>
+							</thead>
+							<tbody>
+							<volist name="list" id="vo">
+							<assign name="userid" value="$vo.UserId" />
+							<tr class="odd gradeX">
+								<td>
+									<input type="checkbox" class="checkboxes" value="{$vo.SetId}"/>
+								</td>
+								<!-- <td>{$vo.SetId}</td>-->
+								<td>{$vo.SetSn}</td>
+								<td>{$vo.deviceName}</td>
+								<td>{$vo.comment}</td>
+								<td>{$vo.Location}</td>
+								
+								<td>
+									{$users[$vo['UserId']]['realname']}
+								</td>
+								
+								<td>
+									<if condition="$vo.deviceStatus eq 1"> 
+										<span class="label label-sm label-success">工作中 </span>
+									<elseif condition="$vo.deviceStatus eq 0"/>
+										<span class="label label-sm label-warning">未连接 </span>
+									<else/>
+										<span class="label label-sm label-danger">已故障</span>
+									</if>
+								</td>
+								<td>
+									<if condition="$vo.lampStatus eq 1"> 
+										开启
+									<else/>
+										关闭
+									</if>
+								</td>
+								<td>{$vo.lampChangeStatusTime}</td>
+								<td>{$vo.power}%</td>
+								<td>
+									<if condition="$vo.lampStatus eq 1"> 
+										充电中
+									<else/>
+										满电量
+									</if>
+								</td>
+								<td>{$vo.electricShockCount}</td>
+								<td>{$vo.bugCount}</td>
+								<td>
+									<a href="__MODULE__/device/report/sn/{$vo.SetSn}">报表</a>
+									<a href="__MODULE__/device/historyData/sn/{$vo.SetSn}">历史数据</a>
+									<a style="display:none;" href="warn_info.html">报警信息</a>
+									<br/>
+									<a href="__MODULE__/device/compareAnalysis/sn/{$vo.SetSn}">对比分析</a>
+								</td>
+							</tr>
+							</volist>
+							</tbody>
+							</table>
+						</div>
+					</div>
+					<!-- END EXAMPLE TABLE PORTLET-->
+				</div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+		</div>
+	</div>
+	<!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<!-- BEGIN FOOTER -->
+<include file="./Application/Admin/View/Public/tpl/footer.html" />
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/Style/assets/global/plugins/respond.min.js"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script type="text/javascript" src="__PUBLIC__/Style/assets/global/plugins/select2/select2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Style/assets/global/plugins/datatables/media/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Style/assets/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="__PUBLIC__/Style/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/admin/pages/scripts/table-managed.js"></script>
+<script>
+jQuery(document).ready(function() {       
+   Metronic.init(); // init metronic core components
+   Layout.init(); // init current layout
+   Demo.init(); // init demo features
+   TableManaged.init();
+   
+   $("#saveBtn,#updateBtn").on("click",function(){
+	   var oper = (this.id == 'updateBtn') ? 'edit' : 'add';
+	   var postData = {
+			   			'UserId':$("#UserId_"+oper).val(),
+			   			'Location':$("#Location_"+oper).val(),
+			   			'comment':$("#comment_"+oper).val(),
+			   			'SetSn':$("#SetSn_"+oper).val(),
+			   			'deviceName':$("#deviceName_"+oper).val()
+			   		  }
+	   if(oper == 'edit'){
+		   postData.SetId = $(".checked > input").eq(0).val();
+	   }
+	   $.ajax({
+		   type: "POST",
+		   url: "/index.php/admin/device/"+oper,
+		   data: postData,
+		   success: function(msg){
+			   if( parseInt(msg) > 0 ){
+				  window.location.reload();
+			   }else{
+				   alert(msg);
+			   }
+		   }
+		});
+   });
+   
+   $("#editDevice").on("click",function(event){
+	   
+	   var selectedNum = $(".checked > input").length;
+	   if( selectedNum == 0 ){
+	   	   alert('请选择要编辑的设备！');
+	   		event.stopPropagation();
+	   	   return ;
+   	   }else if(selectedNum > 1){
+   		   alert('只能编辑一个设备！');
+   			event.stopPropagation();
+   		   return ;
+   	   }
+	   var deviceId = $(".checked > input").eq(0).val();
+	   $.ajax({
+		   type: "POST",
+		   url: "/index.php/admin/device/item",
+		   data: {'SetId':deviceId},
+		   success: function(lampObj){
+			   $("#UserId_edit").val(lampObj.UserId);
+	   		   $("#Location_edit").val(lampObj.Location);
+	   		   $("#comment_edit").val(lampObj.comment);
+	   		   $("#SetSn_edit").val(lampObj.SetSn);
+	   		   $("#deviceName_edit").val(lampObj.deviceName);
+			   if(typeof lampObj != 'object'){
+				   alert('网络异常，请稍后重试！');
+			   }
+			   $('#editLamp').modal('show');
+		   }
+		});
+	   
+   });
+   
+   $("#deleteDevice").on("click",function(){
+	   var idArray = [];
+	   $(".checked > input").each(function(i){
+		   if(this.value != "on"){
+			idArray.push(this.value);			   
+		   }
+	   });
+	   if (idArray.length == 0){
+		   alert('请选择要删除的设备');
+		   return;
+	   }
+	   if(!confirm("确定要删除选择的设备")){
+		   return ;
+	   }
+	   var postData = {'ids' : idArray.toString()} ;
+	   
+	   $.ajax({
+		   type: "POST",
+		   url: "/index.php/admin/device/delete",
+		   data: postData,
+		   success: function(msg){
+			   if( parseInt(msg) > 0 ){
+				  window.location.reload();
+			   }else{
+				   alert('操作失败，请稍后重试！');
+			   }
+		   }
+		});
+   });
+   
+});
+</script>
+</body>
+<!-- END BODY -->
+</html>

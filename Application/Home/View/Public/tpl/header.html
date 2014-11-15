@@ -1,0 +1,104 @@
+<!-- BEGIN TOP BAR -->
+    <div class="pre-header">
+        <div class="container">
+            <div class="row">
+                <!-- BEGIN TOP BAR LEFT PART -->
+                <div class="col-md-6 col-sm-6 additional-shop-info">
+                    <ul class="list-unstyled list-inline">
+                        <!-- <li><i class="fa fa-phone green"></i><span><font color="green">028-87525832</font></span></li> -->
+                        <li><i class="fa fa-envelope-o green"></i><span><font color="green">camera@watchmen.cn</font></span></li>
+                        <li><a title="客服2" href="tencent://message/?uin=362528717&amp;&amp;Site=sc.admin5.com&amp;&amp;Menu=yes"><i class="fa fa-qq topbar-info-icon top-2"></i><span><font color="green">QQ咨询</font></span></a></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR LEFT PART -->
+                <!-- BEGIN TOP BAR MENU -->
+                <div class="col-md-6 col-sm-6 additional-nav">
+                    <ul class="list-unstyled list-inline pull-right">
+                        <li><a target="_blank" href="http://camera.cn/index.php/Admin/user/login2">登录</a></li>
+                        <!--  <li><a href="http://192.168.2.121/c/t/a/login.html">登录1</a></li>-->
+                        <li><a href="__MODULE__/user/register">注册</a></li>
+                        <li><a href="__MODULE__/index/faq">帮助中心</a></li>
+                    </ul>
+                </div>
+                <!-- END TOP BAR MENU -->
+            </div>
+        </div>        
+    </div>
+    <!-- END TOP BAR -->
+    <!-- BEGIN HEADER -->
+    <div class="header">
+      <div class="container">
+        <a class="site-logo" href="/index.php/Home/Index/index"><img src="__PUBLIC__/Home/img/logo.jpg" width="152px" height="41px" alt="成都守望者科技" style="margin-top: 0px;"></a>
+
+        <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+        <!-- BEGIN NAVIGATION -->
+        <div class="header-navigation pull-right font-transform-inherit">
+          <ul>
+          <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center;" <?php echo $open=='home' ? 'class="open"' : '';?>><a style="padding-bottom: 10px;" href="__MODULE__/Index/index" >首页</a></li>
+	      <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center; "<?php echo $open=='productinfo' ? 'class="open"' : '';?>><a style="padding-bottom: 10px;" href="__MODULE__/Index/productinfo">产品介绍</a></li>
+	      <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center;"<?php echo $open=='examples' ? 'class="open"' : '';?>><a style="padding-bottom: 10px;" href="__MODULE__/Index/examples">直播演示</a></li>
+	      <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center;" ><a style="padding-bottom: 10px;" target="_blank" href="http://camera.cn/index.php/Admin/user/login2" >我的设备</a></li>
+	      <!--  <li><a href="http://192.168.2.121/c/t/a/login.html">我的设备1</a></li>-->
+	      <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center;"  <?php echo $open=='company' ? 'class="open"' : '';?>><a style="padding-bottom: 10px;" href="__MODULE__/Index/company">公司介绍</a></li>
+	      <li style="width:84px;padding-left: 0px;padding-right: 0px;text-align:center;"  <?php echo $open=='contacts' ? 'class="open"' : '';?>><a style="padding-bottom: 10px;" href="__MODULE__/Index/contacts">联系我们</a></li>
+	                
+	        <!--  
+	        <li <?php echo $open=='home' ? 'class="open"' : '';?>><a href="__MODULE__/Index/index" <?php echo $open=='home' ? 'style="color:white;"' : '';?>>首页</a></li>
+	      <li <?php echo $open=='productinfo' ? 'class="open"' : '';?>><a href="__MODULE__/Index/productinfo" <?php echo $open=='productinfo' ? 'style="color:white;"' : '';?>>产品介绍</a></li>
+	      <li <?php echo $open=='examples' ? 'class="open"' : '';?>><a href="__MODULE__/Index/examples" <?php echo $open=='examples' ? 'style="color:white;"' : '';?>>直播演示</a></li>
+	      <li><a target="_blank" href="http://camera.cn/index.php/Admin/user/login2" <?php echo $open=='home' ? 'style="color:white;"' : '';?>>我的设备</a></li>
+	      <li <?php echo $open=='contacts' ? 'class="open"' : '';?>><a href="__MODULE__/Index/contacts" <?php echo $open=='contacts' ? 'style="color:white;"' : '';?>>联系我们</a></li>
+	        -->
+	                
+	        <!--        
+	        
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/index.php/Home/Index/index">
+                          首页
+              </a>
+            </li>
+            <li class="dropdown dropdown-megamenu">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/index.php/Home/Index/productinfo">
+                         产品介绍
+              </a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/index.php/Home/Index/examples">
+                          直播演示
+              </a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="__MODULE__/user/login">
+                          我的设备 
+              </a>
+            </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" href="/index.php/Home/Index/contacts">
+                	联系我们 
+              </a>
+            </li>
+ --> 
+            <!-- BEGIN TOP SEARCH -->
+            <li class="menu-search">
+              <span class="sep"></span>
+              <i class="fa fa-search search-btn"></i>
+              <div class="search-box">
+                <form action="#">
+                  <div class="input-group">
+                    <input type="text" placeholder="Search" class="form-control">
+                    <span class="input-group-btn">
+                      <button class="btn btn-primary" type="submit">搜索</button>
+                    </span>
+                  </div>
+                </form>
+              </div> 
+            </li>
+            <!-- END TOP SEARCH -->
+          </ul>
+        </div>
+        <!-- END NAVIGATION -->
+      </div>
+    </div>
+    <!-- Header END -->
+    

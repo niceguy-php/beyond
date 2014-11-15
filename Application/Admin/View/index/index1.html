@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.2.0
+Version: 3.2.0
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+<meta charset="utf-8"/>
+<title>Metronic | Tiles</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<meta content="" name="description"/>
+<meta content="" name="author"/>
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<link href="__PUBLIC__/Style/assets/global/fonts/2.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/plugins/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+<!-- END GLOBAL MANDATORY STYLES -->
+<!-- BEGIN THEME STYLES -->
+<link href="__PUBLIC__/Style/assets/global/css/components.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/global/css/plugins.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/layout.css" rel="stylesheet" type="text/css">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color">
+<link href="__PUBLIC__/Style/assets/admin/layout3/css/custom.css" rel="stylesheet" type="text/css">
+<!-- END THEME STYLES -->
+<link rel="shortcut icon" href="favicon.ico"/>
+</head>
+<!-- BEGIN BODY -->
+<!-- DOC: Apply "page-header-menu-fixed" class to set the mega menu fixed  -->
+<!-- DOC: Apply "page-header-top-fixed" class to set the top menu fixed  -->
+<body>
+<!-- BEGIN HEADER -->
+<div class="page-header">
+	<!-- BEGIN HEADER TOP -->
+	<include file="./Application/Admin/View/Public/tpl/header.html" />
+	<!-- END HEADER TOP -->
+	<!-- BEGIN HEADER MENU -->
+	<include file="./Application/Admin/View/Public/tpl/nav.html" />
+	<!-- END HEADER MENU -->
+</div>
+<!-- END HEADER -->
+<!-- BEGIN PAGE CONTAINER -->
+<div class="page-container">
+	<!-- BEGIN PAGE HEAD -->
+	<div class="page-head">
+		<div class="container">
+			<!-- BEGIN PAGE TITLE -->
+			<div class="page-title">
+				<h1>首页 <small>功能概览</small></h1>
+			</div>
+			<!-- END PAGE TITLE -->
+			<!-- BEGIN PAGE TOOLBAR -->
+			<include file="./Application/Admin/View/Public/tpl/settings.html" />
+			<!-- END PAGE TOOLBAR -->
+		</div>
+	</div>
+	<!-- END PAGE HEAD -->
+	<!-- BEGIN PAGE CONTENT -->
+	<div class="page-content">
+		<div class="container">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="portlet-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							 Widget settings form goes here
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn blue">Save changes</button>
+							<button type="button" class="btn default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			<!-- BEGIN PAGE CONTENT INNER -->
+			<div class="tiles">
+				<div class="tile double-down bg-blue-hoki">
+					<div class="tile-body">
+						<i class="fa fa-bell-o"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Notifications
+						</div>
+						<div class="number">
+							 6
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-red-sunglo">
+					<div class="tile-body">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Meetings
+						</div>
+						<div class="number">
+							 12
+						</div>
+					</div>
+				</div>
+				<div class="tile double selected bg-green-turquoise">
+					<div class="corner">
+					</div>
+					<div class="check">
+					</div>
+					<div class="tile-body">
+						<h4>support@metronic.com</h4>
+						<p>
+							 Re: Metronic v1.2 - Project Update!
+						</p>
+						<p>
+							 24 March 2013 12.30PM confirmed for the project plan update meeting...
+						</p>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							<i class="fa fa-envelope"></i>
+						</div>
+						<div class="number">
+							 14
+						</div>
+					</div>
+				</div>
+				<div class="tile selected bg-yellow-saffron">
+					<div class="corner">
+					</div>
+					<div class="tile-body">
+						<i class="fa fa-user"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Members
+						</div>
+						<div class="number">
+							 452
+						</div>
+					</div>
+				</div>
+				<div class="tile double bg-blue-madison">
+					<div class="tile-body">
+						<img src="__PUBLIC__/Style/assets/admin/pages/media/profile/photo1.jpg" alt="">
+						<h4>Announcements</h4>
+						<p>
+							 Easily style icon color, size, shadow, and anything that's possible with CSS.
+						</p>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Bob Nilson
+						</div>
+						<div class="number">
+							 24 Jan 2013
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-purple-studio">
+					<div class="tile-body">
+						<i class="fa fa-shopping-cart"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Orders
+						</div>
+						<div class="number">
+							 121
+						</div>
+					</div>
+				</div>
+				<div class="tile image selected">
+					<div class="tile-body">
+						<img src="__PUBLIC__/Style/assets/admin/pages/media/gallery/image2.jpg" alt="">
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Media
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-green-meadow">
+					<div class="tile-body">
+						<i class="fa fa-comments"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Feedback
+						</div>
+						<div class="number">
+							 12
+						</div>
+					</div>
+				</div>
+				<div class="tile double bg-grey-cascade">
+					<div class="tile-body">
+						<img src="__PUBLIC__/Style/assets/admin/pages/media/profile/photo2.jpg" alt="" class="pull-right">
+						<h3>@lisa_wong</h3>
+						<p>
+							 I really love this theme. I look forward to check the next release!
+						</p>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							<i class="fa fa-twitter"></i>
+						</div>
+						<div class="number">
+							 10:45PM, 23 Jan
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-red-intense">
+					<div class="tile-body">
+						<i class="fa fa-coffee"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Meetups
+						</div>
+						<div class="number">
+							 12 Jan
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-green">
+					<div class="tile-body">
+						<i class="fa fa-bar-chart-o"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Reports
+						</div>
+						<div class="number">
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-blue-steel">
+					<div class="tile-body">
+						<i class="fa fa-briefcase"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Documents
+						</div>
+						<div class="number">
+							 124
+						</div>
+					</div>
+				</div>
+				<div class="tile image double selected">
+					<div class="tile-body">
+						<img src="__PUBLIC__/Style/assets/admin/pages/media/gallery/image4.jpg" alt="">
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Gallery
+						</div>
+						<div class="number">
+							 124
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-yellow-lemon selected">
+					<div class="corner">
+					</div>
+					<div class="check">
+					</div>
+					<div class="tile-body">
+						<i class="fa fa-cogs"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Settings
+						</div>
+					</div>
+				</div>
+				<div class="tile bg-red-sunglo">
+					<div class="tile-body">
+						<i class="fa fa-plane"></i>
+					</div>
+					<div class="tile-object">
+						<div class="name">
+							 Projects
+						</div>
+						<div class="number">
+							 34
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END PAGE CONTENT INNER -->
+		</div>
+	</div>
+	<!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+<!-- BEGIN PRE-FOOTER -->
+<include file="./Application/Admin/View/Public/tpl/footer.html" />
+<!-- END FOOTER -->
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN CORE PLUGINS -->
+<!--[if lt IE 9]>
+<script src="__PUBLIC__/Style/assets/global/plugins/respond.min.js"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/excanvas.min.js"></script> 
+<![endif]-->
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<!-- IMPORTANT! Load jquery-ui-1.10.3.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-ui/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/jquery.cokie.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+<!-- END CORE PLUGINS -->
+<script src="__PUBLIC__/Style/assets/global/scripts/metronic.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/admin/layout3/scripts/layout.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Style/assets/admin/layout3/scripts/demo.js" type="text/javascript"></script>
+<script>
+jQuery(document).ready(function() {       
+   // initiate layout and plugins
+   Metronic.init(); // init metronic core components
+Layout.init(); // init current layout
+Demo.init(); // init demo features
+});
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

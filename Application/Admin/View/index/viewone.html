@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>新致高-监控管理系统</title>
+	<meta name="description" content="responsive photo gallery using colorbox" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" />
+
+	<!--[if IE 7]>
+	  <link rel="stylesheet" href="__PUBLIC__/css/font-awesome-ie7.min.css" />
+	<![endif]-->
+
+	<!-- page specific plugin styles -->
+
+	<link rel="stylesheet" href="__PUBLIC__/css/colorbox.css" />
+
+	<!-- fonts -->
+
+	<link rel="stylesheet" href="__PUBLIC__/css/ace-fonts.css" />
+
+	<!-- ace styles -->
+
+	<link rel="stylesheet" href="__PUBLIC__/css/ace.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/ace-rtl.min.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/ace-skins.min.css" />
+
+	<!--[if lte IE 8]>
+	  <link rel="stylesheet" href="__PUBLIC__/css/ace-ie.min.css" />
+	<![endif]-->
+
+</head>
+<body>
+<!-- <div style="width: 700px; height: 500px;"> -->
+<div style="width:98%;height:900px;">
+	<div style="width:100%;background-color:#29ad02!important;" class="label label-info label-xlg arrowed-in arrowed-in-right">
+	<div class="inline position-relative">
+	<i class="icon-circle light-green middle"></i>
+	&nbsp;<span class="white">{$description_text}</span></div></div>
+
+<div style="margin-left: 12px;height:700px">
+<object width="100%" height="100%" codebase="http://www.apple.com/qtactivex/qtplugin.cab" id="mo" classid="CLSID:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B">
+<param value="back.GIF" name="src">
+<param value="true" name="allowFullScreen">
+<param value="{$rtsp_url}" name="qtsrc">
+<param value="true" name="autoplay">
+<param value="True" name="autohref">
+<param value="myself " name="target">
+<param value="javaScript:void(0)" name="href">
+<param value="false" name="loop">
+<param value="false" name="controller">
+<param value="tofit" name="scale">
+<embed width="100%" height="100%" pluginspage="http://www.apple.com/quicktime/" type="video/quicktime" plugin="quicktimeplugin" bgcolor="black" allowfullscreen="true" target="Myself" href="javaScript:void(0)" enablejavasript="true" kioskmode="true" autoplay="true" wmode="Transparent" windowlessVideo=1 scale="tofit" loop="false" controller="false" qtsrc="{$rtsp_url}" name="movie1" src="back.GIF">
+</object>
+
+<!-- <object width="100%" height="100%" codebase="http://www.apple.com/qtactivex/qtplugin.cab" id="mo" classid="CLSID:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"><param value="back.GIF" name="src"><param value="true" name="allowFullScreen">  <param value="rtsp://192.168.2.10:554/user=admin&amp;password=123456&amp;channel=1&amp;stream=0.sdp?real_stream--rtp-caching=100" name="qtsrc">   <param value="true" name="autoplay"><param value="True" name="autohref"><param value="myself " name="target">  <param value="javaScript:void(0)" name="href"><param value="false" name="loop"><param value="transparent" name="wMode"><param value="false" name="controller">   <param value="tofit" name="scale"><embed width="100%" height="100%" pluginspage="http://www.apple.com/quicktime/" type="video/quicktime" plugin="quicktimeplugin" bgcolor="black" allowfullscreen="true" target="Myself" href="javaScript:void(0)" enablejavasript="true" kioskmode="true" autoplay="true" wmode="Transparent" scale="tofit" loop="false" controller="false" qtsrc="rtsp://192.168.2.10:554/user=admin&amp;password=123456&amp;channel=1&amp;stream=0.sdp?real_stream--rtp-caching=100" name="movie1" src="back.GIF">   </object>
+ -->
+</div>
+</div>
+</body>
+</html>
