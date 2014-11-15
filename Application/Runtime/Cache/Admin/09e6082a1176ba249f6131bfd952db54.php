@@ -63,9 +63,11 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="container">
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
-				<a href="index.html"><img src="/Public/Style/assets/img/bianlogo_.png"  alt="logo" style="width: 300px; border-bottom-width: 12px; margin-bottom: 20px; margin-top: 0px;" class="logo-default"></a>
+				<a href="index.html"><img src="/Public/Style/assets/img/bianlogo_long.jpg"  alt="logo" style="height: 75px; border-bottom-width: 12px; margin-bottom: 20px; margin-top: 0px;" class="logo-default"></a>
 			</div>
 			<!-- END LOGO -->
+			
+			
 			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 			<a href="javascript:;" class="menu-toggler"></a>
 			<!-- END RESPONSIVE MENU TOGGLER -->
@@ -256,15 +258,15 @@ License: You must have a valid license purchased only from themeforest(the above
 					<li class="dropdown dropdown-user dropdown-dark">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 						<img alt="" class="img-circle" src="/Public/Style/assets/admin/layout3/img/avatar9.jpg">
-						<span class="username username-hide-mobile">管理员张三</span>
+						<span class="username username-hide-mobile"><?php echo ($_SESSION['user']['userName']); ?>(<?php echo ($_SESSION['user']['realname']); ?>)</span>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-default">
 							<li>
-								<a href="#">
+								<a href="#modifyPassword" data-toggle="modal">
 								<i class="icon-lock"></i> 修改密码 </a>
 							</li>
 							<li>
-								<a href="login.html">
+								<a href="/index.php/Admin/user/logout">
 								<i class="icon-key"></i> 注销</a>
 							</li>
 						</ul>
@@ -275,6 +277,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- END TOP NAVIGATION MENU -->
 		</div>
 	</div>
+
 	<!-- END HEADER TOP -->
 	
 	<!-- BEGIN HEADER MENU -->
@@ -295,21 +298,25 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
 			<div class="hor-menu ">
 				<ul class="nav navbar-nav">
-					<li class="active">
+					<li class="<?php echo ($homeNavStatus); ?>">
 						<a href="/index.php/Admin/index/index">首页</a>
 					</li>
 					
-					<li class="active">
-						<a href="/index.php/Admin/device/lists">杀虫灯</a>
+					<li class="<?php echo ($deviceNavStatus); ?>">
+						<a href="/index.php/Admin/device/lists">设备管理</a>
 					</li>
-					<li class="hide">
-						<a href="#">历史数据</a>
+					<?php if($_SESSION['user']['roles']== 'admin'): ?><li class="<?php echo ($userNavStatus); ?>">
+							<a href="/index.php/Admin/user/lists">用户管理</a>
+						</li><?php endif; ?>
+
+					<li class="<?php echo ($historyNavStatus); ?>">
+						<a href="/index.php/Admin/device/historyData">历史数据</a>
 					</li>
-					<li >
+					<li class="<?php echo ($analysisNavStatus); ?>">
 						<a href="/index.php/Admin/device/compareAnalysis">对比分析</a>
 					</li>
 					
-					<li class="menu-dropdown classic-menu-dropdown ">
+					<li class="menu-dropdown classic-menu-dropdown hide">
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;">
 						Extra <i class="fa fa-angle-down"></i>
 						</a>
@@ -575,7 +582,7 @@ License: You must have a valid license purchased only from themeforest(the above
 			</div>
 			<!-- END PAGE TITLE -->
 			<!-- BEGIN PAGE TOOLBAR -->
-			<div class="page-toolbar">
+			<div class="page-toolbar hide">
 				<!-- BEGIN THEME PANEL -->
 				<div class="btn-group btn-theme-panel">
 					<a href="javascript:;" class="btn dropdown-toggle" data-toggle="dropdown">
@@ -681,6 +688,85 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 				<!-- END THEME PANEL -->
 			</div>
+			
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div class="modal fade" id="modifyPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+							<h4 class="modal-title bold green">修改密码</h4>
+						</div>
+						<div class="modal-body">
+							 <form class="form-horizontal" role="form">
+								<div class="form-body">
+									<div class="form-group">
+										<label class="col-md-3 control-label">旧密码</label>
+										<div class="col-md-6">
+											<input type="password" class="form-control" id="old_password" name="old_password" placeholder="旧密码">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">新密码</label>
+										<div class="col-md-6">
+											<input type="password" class="form-control" id="new_password" name="new_password" placeholder="新密码">
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-md-3 control-label">确认密码</label>
+										<div class="col-md-6">
+											<input type="password" class="form-control" id="new_repassword" name="new_repassword" placeholder="确认密码">
+										</div>
+									</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" id="modifyPasswordBtn" class="btn green">修改</button>
+							<button type="button" id="modifyPasswordCloseBtn" class="btn default" data-dismiss="modal">关闭</button>
+						</div>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			
+			
+			<script src="/Public/Style/assets/global/plugins/jquery-1.11.0.min.js" type="text/javascript"></script>
+			<script>
+			$("#modifyPasswordBtn").on('click',function(){
+					var old_password = $.trim( $("#old_password").val() );
+					var new_password = $.trim( $("#new_password").val() );
+					var new_repassword = $.trim( $("#new_repassword").val() );
+					var postData = {
+									"old_password":old_password,
+									"new_password":new_password,
+									"new_repassword":new_repassword
+									};
+					if(old_password == '' || new_password == '' || new_repassword == ''){
+						alert('输入的信息不能为空');
+						return;
+					}
+					$.ajax({
+					   type: "POST",
+					   url: "/index.php/admin/user/updatePasswd",
+					   data: postData,
+					   success: function(msg){
+						   if( parseInt(msg) > 0 ){
+							   alert('修改密码成功');
+							   window.location.reload();
+						   }if(parseInt(msg) == 0){
+							   alert('输入的旧密码不正确')
+						   }else{
+							   alert(msg);
+						   }
+					   }
+					});
+			});
+			</script>
 			<!-- END PAGE TOOLBAR -->
 		</div>
 	</div>

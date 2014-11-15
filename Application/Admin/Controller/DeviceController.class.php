@@ -117,8 +117,9 @@ class DeviceController extends BController {
 		$User = D('User');
 		$users = $User->getField('ID,userName,realname');
 		
-		$Model->query('SELECT i.ID,i.KeyStatus as voltage ,i.LogTime, i.SetName as deviceName, i.SetSN as deviceSN FROM info i;');
+		$electricShockData = $Model->query('SELECT i.ID,i.KeyStatus as voltage ,i.LogTime, i.SetName as deviceName, i.SetSN as deviceSN FROM info i');
 		
+		$this->assign('electricShockData',$electricShockData);
 		$this->assign('users',$users);
 		$this->assign('historyNavStatus','active');
      	$this->assign('yearData',$yearData);
@@ -142,4 +143,6 @@ class DeviceController extends BController {
     	$url = C('ENGINE_URI');
 		
 		// 参数数组
-    	$param = arra
+//     	$param = arra
+    }
+}

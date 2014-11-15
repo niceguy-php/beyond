@@ -375,16 +375,20 @@ License: You must have a valid license purchased only from themeforest(the above
 										<td>
 											<input type="checkbox" class="checkboxes" value="1"/>
 										</td>
-										<td>{}</td>
+										<td>{$vo.deviceSN}</td>
 										<td>
-											2014-11-03 20:20:12
+											{$vo.deviceName}
 										</td>
 										<td>
-											220 V
+											{$vo.LogTime}
 										</td>
 										<td>
-											100
+											{$vo.voltage}V
 										</td>
+										<td>
+											{$vo.bugCount|default=1}
+										</td>
+										<td>{$users[$vo['UserId']]['realname']|default=""}</td>
 									</tr>
 								</volist>
 							</tbody>

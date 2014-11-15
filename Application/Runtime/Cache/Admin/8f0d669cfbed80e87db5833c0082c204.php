@@ -1037,6 +1037,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<input type="checkbox" class="group-checkable" data-set="#sample_2_1 .checkboxes"/>
 								</th>
 								<th>编号</th>
+								<th>设备名称</th>
 								<th>
 									放电时间
 								</th>
@@ -1044,101 +1045,29 @@ License: You must have a valid license purchased only from themeforest(the above
 								<th>
 									 杀死害虫数
 								</th>
+								<th>拥有者</th>
 							</tr>
 							</thead>
 							<tbody>
-							<tr class="odd gradeX">
-								<td>
-									<input type="checkbox" class="checkboxes" value="1"/>
-								</td>
-								<td>1</td>
-								<td>
-									2014-11-03 20:20:12
-								</td>
-								<td>
-									220 V
-								</td>
-								<td>
-									100
-								</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>2</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>3</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>4</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>5</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>6</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>7</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>8</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>1</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>9</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>10</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
-							<tr class="odd gradeX">
-								<td><input type="checkbox" class="checkboxes" value="1"/></td>
-								<td>11</td>
-								<td>2014-11-03 20:20:12</td>
-								<td>220 V</td>
-								<td>100</td>
-							</tr>
+								<?php if(is_array($electricShockData)): $i = 0; $__LIST__ = $electricShockData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="odd gradeX">
+										<td>
+											<input type="checkbox" class="checkboxes" value="1"/>
+										</td>
+										<td><?php echo ($vo["deviceSN"]); ?></td>
+										<td>
+											<?php echo ($vo["deviceName"]); ?>
+										</td>
+										<td>
+											<?php echo ($vo["LogTime"]); ?>
+										</td>
+										<td>
+											<?php echo ($vo["voltage"]); ?>V
+										</td>
+										<td>
+											<?php echo ((isset($vo["bugCount"]) && ($vo["bugCount"] !== ""))?($vo["bugCount"]):1); ?>
+										</td>
+										<td><?php echo ((isset($users[$vo['UserId']]['realname']) && ($users[$vo['UserId']]['realname'] !== ""))?($users[$vo['UserId']]['realname']):""); ?></td>
+									</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 							</tbody>
 							</table>
 						</div>
