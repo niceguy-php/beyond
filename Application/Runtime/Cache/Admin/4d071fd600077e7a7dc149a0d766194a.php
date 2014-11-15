@@ -297,14 +297,14 @@ License: You must have a valid license purchased only from themeforest(the above
 			<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
 			<div class="hor-menu ">
 				<ul class="nav navbar-nav">
-					<li class="active">
+					<li class="<?php echo ($homeNavStatus); ?>">
 						<a href="/index.php/Admin/index/index">首页</a>
 					</li>
 					
-					<li class="active">
+					<li class="<?php echo ($deviceNavStatus); ?>">
 						<a href="/index.php/Admin/device/lists">设备管理</a>
 					</li>
-					<?php if($_SESSION['user']['roles']== 'admin'): ?><li class="active">
+					<?php if($_SESSION['user']['roles']== 'admin'): ?><li class="<?php echo ($userNavStatus); ?>">
 							<a href="/index.php/Admin/user/lists">用户管理</a>
 						</li><?php endif; ?>
 

@@ -23,7 +23,7 @@ class UserController extends BController {
     		session('user',$user_finded);
     		//print_r(session('user'));exit();
     		if($user_finded['roles'] == 'admin'){
-    			$this->redirect("device/lists");
+    			$this->redirect("index/index");
     		}else{
     			$this->redirect("device/lists");
     		}
