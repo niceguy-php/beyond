@@ -302,10 +302,10 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="/index.php/Admin/user/lists">用户管理</a>
 						</li><?php endif; ?>
 
-					<li class="hide">
-						<a href="#">历史数据</a>
+					<li class="<?php echo ($historyNavStatus); ?>">
+						<a href="/index.php/Admin/device/historyData">历史数据</a>
 					</li>
-					<li >
+					<li class="<?php echo ($analysisNavStatus); ?>">
 						<a href="/index.php/Admin/device/compareAnalysis">对比分析</a>
 					</li>
 					
@@ -779,6 +779,13 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 						<div class="modal-body form">
 							 
+							 	<div class="form-group">
+										<label class="col-md-3 control-label">真实姓名</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="realname_add" name="realname" placeholder="真实姓名">
+										</div>
+								</div>
+							 
 								<div class="form-body">
 									<div class="form-group">
 										<label class="col-md-3 control-label">登录帐号</label>
@@ -801,13 +808,6 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									
-									
-									<div class="form-group">
-										<label class="col-md-3 control-label">真实姓名</label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" id="realname_add" name="realname" placeholder="真实姓名">
-										</div>
-									</div>
 									
 									<div class="form-group">
 										<label class="col-md-3 control-label">联系电话</label>
@@ -864,6 +864,14 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="modal-body form">
 							 
 								<div class="form-body">
+								
+									<div class="form-group">
+										<label class="col-md-3 control-label">真实姓名</label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" id="realname_edit" name="realname" placeholder="真实姓名">
+										</div>
+									</div>
+									
 									<div class="form-group">
 										<label class="col-md-3 control-label">登录帐号</label>
 										<div class="col-md-6">
@@ -885,13 +893,6 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									
-									
-									<div class="form-group">
-										<label class="col-md-3 control-label">真实姓名</label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" id="realname_edit" name="realname" placeholder="真实姓名">
-										</div>
-									</div>
 									
 									<div class="form-group">
 										<label class="col-md-3 control-label">联系电话</label>
@@ -1210,6 +1211,10 @@ Demo.init(); // init demo features
 			   			'status': $("#status_"+oper).attr('checked') ? 1 : 0
 			   		  }
 	   if(oper == 'edit'){
+		   if($("#password_"+oper).val() == '********'){
+			   delete postData.password;
+			   delete postData.rpassword;
+		   }
 		   postData.ID = $("#id_edit").val();
 	   }
 	   //console.log(postData);return;

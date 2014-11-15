@@ -124,9 +124,10 @@ class UserController extends BController {
 			unset($_POST['password']);
 			unset($_POST['rpassword']);
 		}
-		print_r($_POST);exit;
+// 		print_r($_POST);exit;
 		if($User->create()){
-			$rs = $User->save();
+			$rs = $User->where(array('ID'=>$_POST['ID']))->data($_POST)->save();
+// 			echo $User->getLastSql();exit;
 			if($rs){
 				$this->ajaxReturn($rs);
 			}

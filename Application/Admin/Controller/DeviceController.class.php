@@ -96,13 +96,13 @@ class DeviceController extends BController {
      	
      	}else{
      		if($sn){//where条件加sn和userid
-     			$yearData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,4) as year,m.deviceSN FROM monthstatistics m WHERE deviceSN='".$sn."' GROUP BY LEFT(monthchar,4)");
-     			$monthData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,7) as monthchar,m.deviceSN FROM monthstatistics m WHERE deviceSN='".$sn."' GROUP BY LEFT(monthchar,7)");
-     			$dayData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,m.daychar,m.deviceSN FROM daystatistics m WHERE deviceSN='".$sn."' GROUP BY m.daychar");
+     			$yearData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,4) as year,m.deviceSN FROM monthstatistics m WHERE deviceSN='%s' GROUP BY LEFT(monthchar,4)",array($sn));
+     			$monthData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,7) as monthchar,m.deviceSN FROM monthstatistics m WHERE deviceSN='%s' GROUP BY LEFT(monthchar,7)",array($sn));
+     			$dayData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,m.daychar,m.deviceSN FROM daystatistics m WHERE deviceSN='%s' GROUP BY m.daychar",array($sn));
      		}else{//where条件加userid
-     			$yearData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,4) as year,m.deviceSN FROM monthstatistics m WHERE deviceSN='".$sn."' GROUP BY LEFT(monthchar,4)");
-     			$monthData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,7) as monthchar,m.deviceSN FROM monthstatistics m WHERE deviceSN='".$sn."' GROUP BY LEFT(monthchar,7)");
-     			$dayData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,m.daychar,m.deviceSN FROM daystatistics m WHERE deviceSN='".$sn."' GROUP BY m.daychar");
+     			$yearData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,4) as year,m.deviceSN FROM monthstatistics m WHERE deviceSN='%s' GROUP BY LEFT(monthchar,4)",array($sn));
+     			$monthData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,LEFT(monthchar,7) as monthchar,m.deviceSN FROM monthstatistics m WHERE deviceSN='%s' GROUP BY LEFT(monthchar,7)",array($sn));
+     			$dayData = $Model->query("SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,m.daychar,m.deviceSN FROM daystatistics m WHERE deviceSN='%s' GROUP BY m.daychar",array($sn));
      		}
      		
      	}
@@ -114,6 +114,13 @@ class DeviceController extends BController {
 //      	exit;
 		$lampData = $Model->query('SELECT * FROM devicelampinfo');
 		
+		$User = D('User');
+		$users = $User->getField('ID,userName,realname');
+		
+		$Model->query('SELECT i.ID,i.KeyStatus as voltage ,i.LogTime, i.SetName as deviceName, i.SetSN as deviceSN FROM info i;');
+		
+		$this->assign('users',$users);
+		$this->assign('historyNavStatus','active');
      	$this->assign('yearData',$yearData);
      	$this->assign('monthData',$monthData);
      	$this->assign('dayData',$dayData);
@@ -126,6 +133,7 @@ class DeviceController extends BController {
      }
      
 	 public function compareAnalysis(){
+	 	$this->assign('analysisNavStatus','active');
 	 	$this->display();
      }
      
@@ -134,10 +142,4 @@ class DeviceController extends BController {
     	$url = C('ENGINE_URI');
 		
 		// 参数数组
-    	$param = array ('reportId' => "satis_key");
-		
-		$return = web_http($url,$param);
-		var_dump( $return );
-    }
-
-}
+    	$param = arra

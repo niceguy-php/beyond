@@ -301,10 +301,10 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="/index.php/Admin/user/lists">用户管理</a>
 						</li><?php endif; ?>
 
-					<li class="hide">
-						<a href="#">历史数据</a>
+					<li class="<?php echo ($historyNavStatus); ?>">
+						<a href="/index.php/Admin/device/historyData">历史数据</a>
 					</li>
-					<li >
+					<li class="<?php echo ($analysisNavStatus); ?>">
 						<a href="/index.php/Admin/device/compareAnalysis">对比分析</a>
 					</li>
 					
@@ -874,7 +874,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<th class="table-checkbox">
 											<input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/>
 										</th>
-										<th>编号</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th>
+										<th>编号</th><th>设备名称</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th><th>拥有者</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -882,7 +882,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<td>
 												<input type="checkbox" class="checkboxes" value="1"/>
 											</td>
-											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["daychar"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td>
+											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["deviceName"]); ?></td><td><?php echo ($vo["daychar"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td><td><?php echo ((isset($users[$vo['UserId']]['realname']) && ($users[$vo['UserId']]['realname'] !== ""))?($users[$vo['UserId']]['realname']):""); ?></td>
 										</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 									</tbody>
 									</table>
@@ -894,7 +894,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<th class="table-checkbox" style="width: 24.2px;">
 											<input type="checkbox" class="group-checkable" data-set="#sample_2_month .checkboxes"/>
 										</th>
-										<th >编号</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th>
+										<th >编号</th><th>设备名称</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th><th>拥有者</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -902,7 +902,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<td>
 												<input type="checkbox" class="checkboxes" value="1"/>
 											</td>
-											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["monthchar"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td>
+											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["deviceName"]); ?></td><td><?php echo ($vo["monthchar"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td><td><?php echo ((isset($users[$vo['UserId']]['realname']) && ($users[$vo['UserId']]['realname'] !== ""))?($users[$vo['UserId']]['realname']):""); ?></td>
 										</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 									</tbody>
 									</table>
@@ -924,7 +924,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<th class="table-checkbox" style="width: 24.2px;">
 											<input type="checkbox" class="group-checkable" data-set="#sample_2_year .checkboxes"/>
 										</th>
-										<th style="width: 24.2px;">编号</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th>
+										<th style="width: 24.2px;">编号</th><th>设备名称</th><th>日期</th><th>放电次数</th><th>杀死害虫数</th><th>拥有者</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -932,7 +932,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<td>
 												<input type="checkbox" class="checkboxes" value="1"/>
 											</td>
-											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["year"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td>
+											<td><?php echo ($vo["deviceSN"]); ?></td><td><?php echo ($vo["deviceName"]); ?></td><td><?php echo ($vo["year"]); ?></td><td><?php echo ($vo["electricShockCount"]); ?></td><td><?php echo ($vo["bugCount"]); ?></td><td><?php echo ((isset($users[$vo['UserId']]['realname']) && ($users[$vo['UserId']]['realname'] !== ""))?($users[$vo['UserId']]['realname']):""); ?></td>
 										</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 									
 									</tbody>
@@ -972,6 +972,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<input type="checkbox" class="group-checkable" data-set="#sample_2_2 .checkboxes"/>
 								</th>
 								<th>编号</th>
+								<th>设备名称</th>
 								<th>
 									 开灯时间
 								</th>
@@ -981,6 +982,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</th>
 								<th>放电次数</th>
 								<th>杀死害虫数</th>
+								<th>拥有者</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -989,6 +991,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<input type="checkbox" class="checkboxes" value="1"/>
 								</td>
 								<td><?php echo ($vo["deviceSN"]); ?></td>
+								<td><?php echo ($vo["deviceName"]); ?></td>
 								<td>
 									<?php echo ($vo["lampOnTime"]); ?>
 								</td>
@@ -998,6 +1001,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<td><?php echo intval(( strtotime($vo['lampOffTime'])-strtotime($vo['lampOnTime']) )/3600);?>小时</td>
 								<td><?php echo ($vo["electricShockCount"]); ?></td>
 								<td><?php echo ($vo["bugCount"]); ?></td>
+								<td><?php echo ((isset($users[$vo['UserId']]['realname']) && ($users[$vo['UserId']]['realname'] !== ""))?($users[$vo['UserId']]['realname']):""); ?></td>
 								
 							</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 							

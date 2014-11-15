@@ -302,10 +302,10 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="/index.php/Admin/user/lists">用户管理</a>
 						</li><?php endif; ?>
 
-					<li class="hide">
-						<a href="#">历史数据</a>
+					<li class="<?php echo ($historyNavStatus); ?>">
+						<a href="/index.php/Admin/device/historyData">历史数据</a>
 					</li>
-					<li >
+					<li class="<?php echo ($analysisNavStatus); ?>">
 						<a href="/index.php/Admin/device/compareAnalysis">对比分析</a>
 					</li>
 					
@@ -936,7 +936,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<th class="table-checkbox">
 									<input type="checkbox" class="group-checkable" data-set="#sample_2 .checkboxes"/>
 								</th>
-								<th>编码</th>
+								<th style="width:50px;">编码</th>
 								<th>名称</th>
 								<th>用途</th>
 								<th>所在位置</th>
@@ -989,11 +989,10 @@ License: You must have a valid license purchased only from themeforest(the above
 								<td><?php echo ($vo["electricShockCount"]); ?></td>
 								<td><?php echo ($vo["bugCount"]); ?></td>
 								<td>
-									<a href="/index.php/Admin/device/report/sn/<?php echo ($vo["SetSn"]); ?>">报表</a>
-									<a href="/index.php/Admin/device/historyData/sn/<?php echo ($vo["SetSn"]); ?>">历史数据</a>
+									<a href="/index.php/Admin/device/report/sn/<?php echo ($vo["SetSn"]); ?>">[报表]</a>
+									<a href="/index.php/Admin/device/historyData/sn/<?php echo ($vo["SetSn"]); ?>">[历史数据]</a>
 									<a style="display:none;" href="warn_info.html">报警信息</a>
-									<br/>
-									<a href="/index.php/Admin/device/compareAnalysis/sn/<?php echo ($vo["SetSn"]); ?>">对比分析</a>
+									<a href="/index.php/Admin/device/compareAnalysis/sn/<?php echo ($vo["SetSn"]); ?>">[对比分析]</a>
 								</td>
 							</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 							</tbody>

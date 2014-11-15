@@ -308,10 +308,10 @@ License: You must have a valid license purchased only from themeforest(the above
 							<a href="/index.php/Admin/user/lists">用户管理</a>
 						</li><?php endif; ?>
 
-					<li class="hide">
-						<a href="#">历史数据</a>
+					<li class="<?php echo ($historyNavStatus); ?>">
+						<a href="/index.php/Admin/device/historyData">历史数据</a>
 					</li>
-					<li >
+					<li class="<?php echo ($analysisNavStatus); ?>">
 						<a href="/index.php/Admin/device/compareAnalysis">对比分析</a>
 					</li>
 					
