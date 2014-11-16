@@ -143,22 +143,71 @@ class DeviceController extends BController {
      
      public function realTimeStatData(){
      	$Model = M();
-     	$realTimeData = $Model->query('SELECT h.bugCount,h.hourDate,h.electricShockCount FROM hourstatistics h');
+     	$realTimeData = $Model->query('SELECT h.bugCount,h.hourDate,h.electricShockCount FROM hourstatistics h ORDER BY hourDate ASC');
      	$statData = array();
      	
      	foreach ($realTimeData as $k=>$v){
-     		$time = strtotime($v['hourDate']);
-			$statData['bug'][] = array('x'=>$time,'y'=>$v['bugCount']);
-			$statData['electric'][] = array('x'=>$time,'y'=>$v['electricShockCount']);	
+     		$time = strtotime($v['hourDate'])*1000;
+			$statData['bug'][] = array('x'=>$time,'y'=>intval($v['bugCount']));
+			$statData['electric'][] = array('x'=>$time,'y'=>intval($v['electricShockCount']));	
      	}
      	$statDataReturn[] = array('name'=>'诱杀害虫数','data'=>$statData['bug']);
      	$statDataReturn[] = array('name'=>'放电次数','data'=>$statData['electric']);
-     	$this->ajaxReturn($statDataReturn);;
+     	$this->ajaxReturn($statDataReturn);
      }
      
-     public function hourStatData(){
+     public function dayStatData(){
+     	$Model = M();
+     	$dayData = $Model->query('SELECT SUM(d.bugCount) AS bugCount,SUM(d.electricShockCount) AS electricShockCount,d.dayDate,MONTH(d.dayDate) AS month,DAY(d.dayDate) AS day FROM daystatistics d GROUP BY daychar ORDER BY dayDate ASC ');
+     	
+     	$statData = array();
+     	foreach ($dayData as $k=>$v){
+     		
+     		
+     		$statData['bug'][$v['month']][] = array('x'=>$v['day']-1,'y'=>intval($v['bugCount']));
+     		$statData['electric'][$v['month']][$v['day']] = array('x'=>$v['day']-1,'y'=>intval($v['electricShockCount']));
+     		
+     		//$statData[] = array('name'=>$v['month'].'月','data'=>array('x'=>$v['day'],'y'=>intval($v['bugCount'])));
+     		//$dayBug[$v['month']][$v['day']] = $v['bugCount']; 
+     		//$dayelEctricCount[$v['month']][$v['day']] = $v['electricShockCount'];
+     		//$statData[] = array('name'=>$v['month'].'月','data'=>'');
+     		//$statData['bug'][] = array('day'=>$v['day'],'bugCount'=>intval($v['bugCount']));
+     		//$statData['electric'][] = array('x'=>$v['day'],'y'=>intval($v['electricShockCount']));
+//      		$statData['bug'][] = array('x'=>$v['day'],'y'=>intval($v['bugCount']));
+//      		$statData['electricShockCount'][] = array('x'=>$v['day'],'y'=>intval($v['electricShockCount']));
+     	}
+     	
+     	
+     	foreach($statData['bug'] as $m=>$v){
+			$a[] = array('name'=>$m.'月','data'=>$v);	     		
+     	}
+     	
+     	$this->ajaxReturn($a);
      	
      }
+     
+     public function monthStatData(){
+     	$Model = M();
+     	$dayData = $Model->query('SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,YEAR(m.monthDate) as year,MONTH(m.monthDate) as month,m.deviceSN,m.monthDate,m.monthchar FROM monthstatistics m GROUP BY monthchar ORDER BY monthDate ASC');
+     	
+     	$statData = array();
+     	$monthMap = array('1'=>'一月','2'=>'二月','3'=>'三月','4'=>'四月','5'=>'五月','6'=>'六月','7'=>'七月','8'=>'八月','9'=>'九月','10'=>'十月','11'=>"十一月",'12'=>"十二月");
+     	foreach ($dayData as $k=>$v){
+     		 
+     		
+     		$statData['bug'][$v['year']][] = array('x'=>$v['month']-1,'y'=>intval($v['bugCount']));
+     		$statData['electric'][$v['year']][] = array('x'=>$v['month']-1,'y'=>intval($v['electricShockCount']));
+     		 
+     	}
+     	
+     	
+     	foreach($statData['bug'] as $y=>$v){
+     		$a[] = array('name'=>$y.'年统计','data'=>$v);
+     	}
+     	
+     	$this->ajaxReturn($a);
+     }
+     
      
     public function get(){
     	
