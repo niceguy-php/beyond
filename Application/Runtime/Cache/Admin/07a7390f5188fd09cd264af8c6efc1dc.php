@@ -56,7 +56,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<div class="container">
 			<!-- BEGIN LOGO -->
 			<div class="page-logo">
-				<a href="index.html"><img src="/Public/Style/assets/img/bianlogo_long.jpg"  alt="logo" style="height: 75px; border-bottom-width: 12px; margin-bottom: 20px; margin-top: 0px;" class="logo-default"></a>
+				<a href="index.html"><img src="/Public/Style/assets/img/bianlogo_short.jpg" alt="logo" style="height: 75px; border-bottom-width: 12px; margin-bottom: 20px; margin-top: 0px;" class="logo-default"></a>
 			</div>
 			<!-- END LOGO -->
 			
@@ -964,7 +964,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<button onclick="$('#createUser').modal('show');" class="btn green-haze btn-circle"><i class="fa fa-plus"></i> 添加</button>
 								<div class="btn-group">
 									<a class="btn btn-circle btn-danger" href="#" id="deleteSelected" data-toggle="dropdown">
-										<i class="fa fa-bank"></i> 删除 </i>
+										<i class="fa  fa-trash-o"></i> 删除 </i>
 									</a>
 								</div>
 							</div>

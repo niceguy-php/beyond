@@ -140,6 +140,26 @@ class DeviceController extends BController {
 	 	$this->display();
      }
      
+     
+     public function realTimeStatData(){
+     	$Model = M();
+     	$realTimeData = $Model->query('SELECT h.bugCount,h.hourDate,h.electricShockCount FROM hourstatistics h');
+     	$statData = array();
+     	
+     	foreach ($realTimeData as $k=>$v){
+     		$time = strtotime($v['hourDate']);
+			$statData['bug'][] = array('x'=>$time,'y'=>$v['bugCount']);
+			$statData['electric'][] = array('x'=>$time,'y'=>$v['electricShockCount']);	
+     	}
+     	$statDataReturn[] = array('name'=>'诱杀害虫数','data'=>$statData['bug']);
+     	$statDataReturn[] = array('name'=>'放电次数','data'=>$statData['electric']);
+     	$this->ajaxReturn($statDataReturn);;
+     }
+     
+     public function hourStatData(){
+     	
+     }
+     
     public function get(){
     	
     	$url = C('ENGINE_URI');
