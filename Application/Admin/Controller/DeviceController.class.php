@@ -130,6 +130,11 @@ class DeviceController extends BController {
      }
      
      public function report(){
+     	$Model = M();
+     	$current_day_sql = "SELECT MIN(h.bugCount) AS min,MAX(h.bugCount) AS max,CEIL(AVG(h.bugCount)) AS avg ,SUM(h.bugCount) AS sum,CONCAT(DATE_FORMAT(NOW(),'%Y-%m-%d'),' 00:00-23:59') AS timeRange FROM hourstatistics h WHERE LEFT(h.hourchar,10) = DATE_FORMAT(NOW(),'%Y-%m-%d')";
+     	$last_month_sql = "select MIN(h.bugCount) AS min,MAX(h.bugCount) AS max,CEIL(AVG(h.bugCount)) AS avg ,SUM(h.bugCount) AS sum ,CONCAT(date_sub(date_sub(date_format(now(),'%y/%m/%d'),interval extract(day from now())-1 day),interval 1 month),'~',date_sub(date_sub(date_format(now(),'%y/%m/%d'),interval extract( day from now()) day),interval 0 month)) AS timeRange FROM hourstatistics h WHERE date_format(h.hourDate,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')";
+     	$current_day_info = $Model->query($current_day_sql);
+     	
      	
      	$this->assign('deviceInfo',$_GET);
      	$this->display();
@@ -141,16 +146,21 @@ class DeviceController extends BController {
      }
      
      
-     public function realTimeStatData(){
+     public function hourStatData(){
      	$Model = M();
-     	$realTimeData = $Model->query('SELECT h.bugCount,h.hourDate,h.electricShockCount FROM hourstatistics h ORDER BY hourDate ASC');
+     	$hourDataArray = $Model->query('SELECT h.bugCount,h.hourDate,h.electricShockCount FROM hourstatistics h ORDER BY hourDate ASC');
+//      	$hourData = web_http(array('report_key'=>'hour_stat'),C('ENGINE_URI'));
+//      	$hourDataArray = json_decode($hourData,true);
+//      	var_dump($hourDataArray);exit;
+//      	echo $hourData;exit;
      	$statData = array();
      	
-     	foreach ($realTimeData as $k=>$v){
+     	foreach ($hourDataArray as $k=>$v){
      		$time = strtotime($v['hourDate'])*1000;
 			$statData['bug'][] = array('x'=>$time,'y'=>intval($v['bugCount']));
 			$statData['electric'][] = array('x'=>$time,'y'=>intval($v['electricShockCount']));	
      	}
+     	
      	$statDataReturn[] = array('name'=>'诱杀害虫数','data'=>$statData['bug']);
      	$statDataReturn[] = array('name'=>'放电次数','data'=>$statData['electric']);
      	$this->ajaxReturn($statDataReturn);
@@ -177,7 +187,7 @@ class DeviceController extends BController {
 //      		$statData['electricShockCount'][] = array('x'=>$v['day'],'y'=>intval($v['electricShockCount']));
      	}
      	
-     	
+     	$a = array();
      	foreach($statData['bug'] as $m=>$v){
 			$a[] = array('name'=>$m.'月','data'=>$v);	     		
      	}
@@ -187,19 +197,18 @@ class DeviceController extends BController {
      }
      
      public function monthStatData(){
+     	
      	$Model = M();
      	$dayData = $Model->query('SELECT SUM(m.electricShockCount) as electricShockCount,SUM(m.bugCount) as bugCount,m.deviceName,YEAR(m.monthDate) as year,MONTH(m.monthDate) as month,m.deviceSN,m.monthDate,m.monthchar FROM monthstatistics m GROUP BY monthchar ORDER BY monthDate ASC');
      	
      	$statData = array();
      	$monthMap = array('1'=>'一月','2'=>'二月','3'=>'三月','4'=>'四月','5'=>'五月','6'=>'六月','7'=>'七月','8'=>'八月','9'=>'九月','10'=>'十月','11'=>"十一月",'12'=>"十二月");
      	foreach ($dayData as $k=>$v){
-     		 
      		
      		$statData['bug'][$v['year']][] = array('x'=>$v['month']-1,'y'=>intval($v['bugCount']));
      		$statData['electric'][$v['year']][] = array('x'=>$v['month']-1,'y'=>intval($v['electricShockCount']));
      		 
      	}
-     	
      	
      	foreach($statData['bug'] as $y=>$v){
      		$a[] = array('name'=>$y.'年统计','data'=>$v);
@@ -212,7 +221,11 @@ class DeviceController extends BController {
     public function get(){
     	
     	$url = C('ENGINE_URI');
-		
+    	$param = array('report_key'=>'current_day');
+    	echo C('ENGINE_URI');
+    	$ret = web_http($param,C('ENGINE_URI'));
+    	var_dump($ret);
+    	
 		// 参数数组
 //     	$param = arra
     }

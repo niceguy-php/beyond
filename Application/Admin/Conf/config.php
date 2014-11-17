@@ -25,12 +25,20 @@ return array(
 	'ENGINE_PATH' => '/report',
 	'ENGINE_URI' =>'http://192.168.2.225:7777/report',
 		
+
+	'DB_REPORT'=>array(
+		'db_type'=>'mysql',
+		'db_user'=>'root',
+		'db_pwd'=>'watchmen',
+		'db_host'=>'192.168.2.225',
+		'db_port'=>'3306',
+		'db_name'=>'watchmen',
+		'DB_CHARSET'=> 'utf8', // 字符集
+	),
 		
 	//SESSION配置
 	//'SESSION_TYPE'=>'Db',
 	'SESSION_AUTO_START' => true,
-	
-	
 		
 	//安全配置对xss进行过滤	
 	'VAR_FILTERS'=>'htmlspecialchars',

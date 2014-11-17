@@ -1204,7 +1204,7 @@ $(function () {
 		$.ajax({
 			   type: "GET",
 			   async :false,  
-			   url: "/index.php/admin/device/realTimeStatData",
+			   url: "/index.php/admin/device/hourStatData",
 			   success: function(data){
 				   realTimeData = data;
 			   }
@@ -1237,6 +1237,9 @@ $(function () {
         },
         title: {
             text: '2014年每天杀死害虫统计对比图'
+            	,style:{
+                	fontFamily:'microsoft yahei'
+                }
         },
         subtitle: {
             text: '比昂科技'
@@ -1253,6 +1256,9 @@ $(function () {
         yAxis: {
             title: {
                 text: '杀死害虫数量 （只）'
+                	,style:{
+                    	fontFamily:'microsoft yahei'
+                    }
             },
             labels: {
                 formatter: function () {
@@ -1329,7 +1335,10 @@ $(function () {
            // events: { load: request }
         },
         title: {
-            text: '诱杀害虫按小时统计图'
+            text: '诱杀害虫按小时统计图',
+            style:{
+            	fontFamily:'microsoft yahei'
+            }
         },
         subtitle: {
             text: ''
@@ -1348,6 +1357,9 @@ $(function () {
         yAxis: {
             title: {
                 text: '杀虫数量\放电次数'
+                ,style:{
+                    	fontFamily:'microsoft yahei'
+                    }
             },
             min: 0,
             minorGridLineWidth: 0,
@@ -1395,8 +1407,11 @@ $(function () {
     
     $('#year_stat').highcharts({
         title: {
-            text: '月杀死害虫数量统计对比图',
-            x: -20 //center
+            text: '年杀死害虫数量统计对比图',
+            x: -20, //center
+            style:{
+            	fontFamily:'microsoft yahei'
+            }
         },
         subtitle: {
             text: '',
@@ -1416,6 +1431,9 @@ $(function () {
         yAxis: {
             title: {
                 text: '杀死害虫数量（只）'
+                ,style:{
+                    	fontFamily:'microsoft yahei'
+                    }
             },
             plotLines: [{
                 value: 0,
@@ -1483,6 +1501,9 @@ $(function () {
         },
         title: {
             text: '诱杀害虫数量实时信息统计图'
+            	,style:{
+                	fontFamily:'microsoft yahei'
+                }
         },
         xAxis: {
             type: 'datetime',
@@ -1501,8 +1522,13 @@ $(function () {
             }
         },
         yAxis: {
+        	min:0,
+        	//tickInterval:100,
             title: {
                 text: '诱杀害虫数量（只）'
+                	,style:{
+                    	fontFamily:'microsoft yahei'
+                    }
             },
             plotLines: [{
                 value: 0,
@@ -1594,6 +1620,9 @@ $(function () {
         },
         title: {
             text: '农作物的害虫数量和农药使用量统计'
+            	,style:{
+                	fontFamily:'microsoft yahei'
+                }
         },
         subtitle: {
             text: ''
@@ -1618,6 +1647,9 @@ $(function () {
             min: 0,
             title: {
                 text: '农药量 (毫升) / 杀死害虫数(只)'
+                	,style:{
+                    	fontFamily:'microsoft yahei'
+                    }
             }
         },
         tooltip: {

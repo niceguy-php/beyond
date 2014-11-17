@@ -1,5 +1,5 @@
 <?php
-function web_http($url,$param){
+function web_http($param,$url){
 	$data = json_encode($param);
 	
 	$ch = curl_init();
@@ -13,4 +13,5 @@ function web_http($url,$param){
 	
 	return $return;
 }
+
 
